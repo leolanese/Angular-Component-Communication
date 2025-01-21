@@ -8,19 +8,23 @@ import {ParentComponent} from "./parent/parent.component";
   standalone: true,
   imports: [RouterOutlet, ParentObservableComponent, ParentComponent],
   template: `
+    <p>{{ title }}</p>
+<hr>
     <h2>{{ title1 }}</h2>
     <!-- @input/@output message communication -->
     <app-parent></app-parent>
-
+<hr>
     <h2>{{ title2 }}</h2>
     <!-- observable @input/@output Observable communication -->
     <app-parent-observable></app-parent-observable>
-
+<hr>
     <router-outlet />
   `,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  title: string = '@Input/@Output, Passing Observable from P -> C, Reusable Generic Service ';
+
   title1 = '@input/@output message communication';
   title2 = '@input/@output Observable communication from API service';
 }
