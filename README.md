@@ -1,6 +1,12 @@
 # Angular Input
 
-> @Input/@output, Passing Observable from P -> C, Reusable Generic Service
+- Child: Simple @Input/@Output with SoC
+- Child-observable: Passing Observable from P -> C + Reusable Generic Service
+
+TODO: 
+- Child-signal: input signal
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
 
