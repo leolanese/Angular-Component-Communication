@@ -34,7 +34,6 @@ export class APIService {
       debounceTime(300),
       shareReplay(1), // Cache the response to avoid multiple requests
       catchError((error) => {
-        console.error('Error fetching data:', error);
         return throwError(() => new Error('Failed to fetch data.'));
       })
     );

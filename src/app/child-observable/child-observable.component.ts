@@ -1,10 +1,9 @@
-import {AsyncPipe} from '@angular/common';
 import {Component,EventEmitter,Output} from '@angular/core';
 
 @Component({
   selector: 'app-child-observable',
   standalone: true,
-  imports: [ AsyncPipe],
+  imports: [ ],
   template: `
   <!-- {{ expenses$ | async }} -->
 <!-- 
@@ -14,6 +13,8 @@ import {Component,EventEmitter,Output} from '@angular/core';
       <p class="email">Email: {{ user.email }}</p>
       <button (click)="fetchData()">Fetch Data</button>
     </div> -->
+
+
 
     <button 
         (click)="sendNotification()">
