@@ -16,7 +16,6 @@ import {ChildComponent} from '../child/child.component';
   styleUrl: './parent.component.scss'
 })
 export class ParentComponent {
-  title = 'angular-input';
   toChildMessage = 'Message from Parent -> Child';
 
   onParentMessage(event: unknown) {
