@@ -13,7 +13,6 @@ import {ChildComponent} from '../child/child.component';
       (toParentPackage)="onParentPackage($event)"
     />
   `,
-  styleUrl: './parent.component.scss'
 })
 export class ParentComponent {
   toChildMessage = 'Message from Parent -> Child';

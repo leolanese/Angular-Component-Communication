@@ -7,7 +7,6 @@ import {Component,EventEmitter,Input,OnInit,Output} from '@angular/core';
   template: `
      <button (click)="sendValues($event)"> Send Data </button>
   `,
-  styleUrl: './child.component.scss'
 })
 export class ChildComponent implements OnInit {
   // @Input = P -> C*

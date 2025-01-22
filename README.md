@@ -1,10 +1,34 @@
 # Angular Input
 
-- Child: Simple @Input/@Output with SoC
+- /`child-contructor-input-onchanges`
+Accessing passed values from contructor() (not safe), @Input() and ngOnChanges() with SoC
+
+- /`child` 
+passing P <-> C @Input/@Output with SoC
+
 - Child-observable: Passing Observable from P -> C + Reusable Generic Service
 
 TODO: 
 - Child-signal: input signal
+
+---
+
+## NOTES:
+> When passing values from a P -> C component using the `@Input`, `these values are not available in the constructor` = Avoids running Angular-specific logic or accessing @Input properties, as they are not yet set.
+
+> If you need to react to changes in @Input values beyond initialization, consider using the `ngOnChanges()` lifecycle hook
+
+### constructor()
+- Called first, before any Angular lifecycle hooks.
+- Used to initialise the component instance.
+- Runs before Angular has fully initialized the component.
+- `Not safe access @Input values`
+
+### ngOnInit()
+
+- called after the constructor, after the first ngOnChanges()
+- `Safe for access @Input` values
+- Runs after the constructor and after Angular sets up the component's bindings.
 
 ---
 

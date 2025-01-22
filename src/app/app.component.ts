@@ -1,14 +1,18 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {ParentObservableComponent} from './parent-observable/parent-observable.component';
-import {ParentComponent} from "./parent/parent.component";
+import {ParentContructorInputOnchangesComponent} from "./child-contructor-input-onchanges/parent-contructor-input-onchanges.component";
+import {ParentObservableComponent} from './child-observable/parent-observable.component';
+import {ParentComponent} from "./child/parent.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ParentObservableComponent, ParentComponent],
+  imports: [RouterOutlet, ParentObservableComponent, ParentComponent, ParentContructorInputOnchangesComponent],
   template: `
-    <p>{{ title }}</p>
+    <h1>{{ title }}</h1>
+<hr>
+    <h2>{{ title0 }}</h2>
+    <app-parent-contructor-input-onchanges />
 <hr>
     <h2>{{ title1 }}</h2>
     <!-- @input/@output message communication -->
@@ -23,8 +27,9 @@ import {ParentComponent} from "./parent/parent.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title: string = '@Input/@Output, Passing Observable from P -> C, Reusable Generic Service ';
+  title: string = '@Input/@Output playground';
 
+  title0 = '@input/@output passing and accessing data: constructor, ngOnChanges, ngOnInit (safe)';
   title1 = '@input/@output message communication';
   title2 = '@input/@output Observable communication from API service';
 }

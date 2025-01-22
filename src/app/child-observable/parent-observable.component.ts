@@ -3,7 +3,7 @@ import {Component,DestroyRef,inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Observable,Subject,distinctUntilChanged,switchMap} from 'rxjs';
 import {APIService} from '../api.service';
-import {ChildObservableComponent} from "../child-observable/child-observable.component";
+import {ChildObservableComponent} from "./child-observable.component";
 
 type ApiTerm = 'users' | 'products' | 'orders';
 

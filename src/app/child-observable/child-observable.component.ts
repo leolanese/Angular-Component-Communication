@@ -6,7 +6,7 @@ import {Component,EventEmitter,Output} from '@angular/core';
   imports: [ ],
   template: `
   <!-- {{ expenses$ | async }} -->
-<!-- 
+    <!-- 
     <div>
       <h3>{{ user.name }} : {{ user.id }}</h3>
       <p class="username">Username: {{ user.username }}</p>
@@ -14,13 +14,10 @@ import {Component,EventEmitter,Output} from '@angular/core';
       <button (click)="fetchData()">Fetch Data</button>
     </div> -->
 
-
-
     <button 
         (click)="sendNotification()">
       Message to Parent
     </button>`,
-  styleUrl: './child-observable.component.scss'
 })
 export class ChildObservableComponent {
   @Output()  // Send to Parent
