@@ -11,13 +11,9 @@ type ApiTerm = 'users' | 'products' | 'orders';
   standalone: true,
   imports: [CommonModule, ChildSignalComponent],
   template: `
-    <!-- <app-child-signal [message]="apiService.posts()"></app-child-signal> -->
     <button (click)="fetchPosts()">Load Posts</button>
 
-
-      <!-- <app-child-signal 
-          [postsSignal]="apiService.postsSignal()"></app-child-signal> -->
-      <app-child-signal [postsSignal]="postsSignal"></app-child-signal>
+    <app-child-signal [postsSignal]="postsSignal"></app-child-signal>
   `,
 })
 export class ParentSignalComponent {
@@ -30,7 +26,7 @@ export class ParentSignalComponent {
   apiService = inject(APIService);
 
   ngOnInit(): void {
-   // this.fetchData<string>('users');
+  //  this.fetchData<string>('users');
     // this.fetchData<string>('products');
     // this.fetchData<string>('orders');
   }

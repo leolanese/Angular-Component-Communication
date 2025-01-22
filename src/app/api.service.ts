@@ -37,16 +37,8 @@ export class APIService {
     );
   }
 
-  // Fetch posts using the generic method
-  getToSignal() {
-    this.get<Post[]>(`${this.apiRootUrl}posts`).subscribe({
-      next: (data) => this.postsSignal.set(data), // Update the posts signal
-      error: (err) => console.error(err), // Update the error signal
-    });
-  }
-
-    getPosts(): Observable<any[]> {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/users');
+  getPosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiRootUrl}users`);
   }
   
 }

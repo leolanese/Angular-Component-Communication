@@ -35,7 +35,7 @@ export class AppComponent {
   title: string = '@Input/@Output playground';
 
   title0 = 'passing and accessing data: constructor, ngOnChanges, ngOnInit (safe)';
-  title1 = 'message communication with SoC';
-  title2 = 'Observable communication from API service with SoC';
-  title3 = 'input signal from API with SoC';
+  title1 = 'message P->C communication with SoC';
+  title2 = 'Observable P->C communication from API service with SoC';
+  title3 = 'input signal P->C communication from API with SoC';
 }
