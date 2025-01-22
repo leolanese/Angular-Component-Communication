@@ -1,7 +1,7 @@
 import {AsyncPipe} from '@angular/common';
 import {Component,DestroyRef,inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Observable,Subject,distinctUntilChanged,switchMap} from 'rxjs';
+import {Observable,distinctUntilChanged,switchMap} from 'rxjs';
 import {APIService} from '../api.service';
 import {ChildObservableComponent} from "./child-observable.component";
 
@@ -15,7 +15,7 @@ type ApiTerm = 'users' | 'products' | 'orders';
     <app-child-observable
       (notifyParent)="getNotification($event)"  
     />
-
+X
     @for(user of data$ | async; track user){
       <div>
         <h3>id: {{ user.id }}</h3>
@@ -25,6 +25,7 @@ type ApiTerm = 'users' | 'products' | 'orders';
     } @empty {
       <h2>Loading...</h2> 
     }
+    X
   `,
 })
 export class ParentObservableComponent {
@@ -32,7 +33,7 @@ export class ParentObservableComponent {
   data$!: Observable<any[]> 
 
   // Subject to trigger data fetch
-  private fetchDataSubject$ = new Subject<void>();
+  // private fetchDataSubject$ = new Subject<void>();
 
   #destroyRef = inject(DestroyRef);
   #apiService = inject(APIService)

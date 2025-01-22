@@ -32,6 +32,89 @@ TODO:
 
 ---
 
+## @for instead *ngFor()
+
+> The key difference is that `@for` loops over the array value directly, while `*ngFor` gives you the array element value.
+
+Feature: Syntax
+- `ngFor`: `*ngFor="let item of items"`
+- `@for`: `@for="let i from X to Y"`
+
+
+```js
+// instead of
+<ul>
+  <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li>
+</ul>
+
+// better do
+<ul>
+  @for (let suggestion of suggestions) {
+    <li>{{ suggestion }}</li>
+  }
+</ul>
+```
+
+## @for with | async pipe
+
+```js
+// instead
+<div *ngIf="users$ | async as users; else loading">
+  <app-dummy 
+     *ngFor="let user of users" 
+     [user]="user" 
+     (fetchDataEvent)="fetchData()"
+  />
+</div>
+<ng-template #loading><h2>Loading...</h2></ng-template>  
+
+// better do
+@for(user of users$ | async; track user){
+    <app-dummy 
+        [user]="user" 
+        (fetchDataEvent)="fetchData()"
+    />
+} @empty {
+    <h2>Loading...</h2> 
+}
+```
+
+## @for with $index
+
+```js
+@Component({
+    template: `
+        @for(fruit of fruits; track fruit; let index = $index) {
+            <div>{{ fruit }} {{ index }}</div>
+        }
+
+    `,
+})
+export class FruitComponent {
+    fruits = ['apple', 'lemon'];
+}
+```
+
+## @for with $first and $last
+
+```js
+@Component({
+    template: `
+        @for(fruit of fruits; track fruit; let first = $first, last = $last) {
+            <div>First: {{ first }}: Last {{ last }}</div>
+        }
+    `,
+})
+export class FruitComponent {
+    fruits = ['apple', 'lemon'];
+}
+
+// <div>First: true: Last false</div>
+// <div>First: false: Last true</div>
+```
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
 
 ## Development server

@@ -1,12 +1,32 @@
-import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Component,Input,WritableSignal} from '@angular/core';
+import {Post} from '../api.service';
 
 @Component({
   selector: 'app-child-signal',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template: `
+    <div>
+      <pre>{{ this.stringify(message) }}</pre>
+    </div>
+
+    <div *ngFor="let user of postsSignal()">
+      <h3>id: {{ user.id }}</h3>
+      <p>Username: {{ user.username }}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
   `,
 })
 export class ChildSignalComponent {
+  @Input() 
+  message!: Post[];
+
+  @Input()
+  postsSignal!: WritableSignal<any[]>;
+
+  stringify(obj: any): string {
+    return JSON.stringify(obj, null, 2);
+  }
 
 }

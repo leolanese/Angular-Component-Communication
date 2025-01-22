@@ -16,7 +16,7 @@ import {Component,EventEmitter,Output} from '@angular/core';
 
     <button 
         (click)="sendNotification()">
-      Message to Parent
+        Message to Parent
     </button>`,
 })
 export class ChildObservableComponent {
