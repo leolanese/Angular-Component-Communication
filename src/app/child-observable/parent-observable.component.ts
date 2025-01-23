@@ -35,8 +35,8 @@ export class ParentObservableComponent {
   // Subject to trigger data fetch
   // private fetchDataSubject$ = new Subject<void>();
 
-  #destroyRef = inject(DestroyRef);
-  #apiService = inject(APIService)
+  destroyRef = inject(DestroyRef);
+  apiService = inject(APIService)
 
   ngOnInit(): void {
     this.fetchData<string>('users');
@@ -50,12 +50,12 @@ export class ParentObservableComponent {
 
   // smart component fully reusable with generic type
   fetchData<T>(term: ApiTerm): void {
-    const url = `${this.#apiService.apiRootUrl}${term}`;
+    const url = `${this.apiService.apiRootUrl}${term}`;
 
-    this.data$ = this.#apiService.get<T[]>(url).pipe(
+    this.data$ = this.apiService.get<T[]>(url).pipe(
       distinctUntilChanged(), // Only trigger if the value has changed
-      switchMap(() => this.#apiService.get<T[]>(url).pipe(
-        takeUntilDestroyed(this.#destroyRef), // Efficient cleanup for subscriptions
+      switchMap(() => this.apiService.get<T[]>(url).pipe(
+        takeUntilDestroyed(this.destroyRef), // Efficient cleanup for subscriptions
       ))
     );
   }
