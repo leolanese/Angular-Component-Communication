@@ -15,7 +15,7 @@ type ApiTerm = 'users' | 'products' | 'orders';
     <app-child-observable
       (notifyParent)="getNotification($event)"  
     />
-X
+
     @for(user of data$ | async; track user){
       <div>
         <h3>id: {{ user.id }}</h3>
@@ -25,7 +25,7 @@ X
     } @empty {
       <h2>Loading...</h2> 
     }
-    X
+    
   `,
 })
 export class ParentObservableComponent {
