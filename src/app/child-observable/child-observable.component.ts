@@ -6,13 +6,13 @@ import {Component,EventEmitter,Output} from '@angular/core';
   imports: [ ],
   template: `
   <!-- {{ expenses$ | async }} -->
-    <!-- 
+    
     <div>
       <h3>{{ user.name }} : {{ user.id }}</h3>
       <p class="username">Username: {{ user.username }}</p>
       <p class="email">Email: {{ user.email }}</p>
       <button (click)="fetchData()">Fetch Data</button>
-    </div> -->
+    </div>
 
     <button 
         (click)="sendNotification()">
