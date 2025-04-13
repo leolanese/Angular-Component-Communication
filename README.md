@@ -1,4 +1,4 @@
-# Angular P <-> C Communication using Input PLAYGROUND
+# Angular (19+) P <-> C Communication using Input PLAYGROUND
 
 ```js
 - /`child-contructor-input-onchanges`
