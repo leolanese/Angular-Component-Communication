@@ -1,5 +1,9 @@
 # Angular (19+) Observables and Signal using @Input/@Output playground and Signal Input/Output
 
+## Demo
+
+![Demo](./src/app/assets/demo.png)
+
 ```js
 - /`child-contructor-input-onchanges`
 Accessing passed values from contructor() (not safe), @Input() and ngOnChanges() with SoC
