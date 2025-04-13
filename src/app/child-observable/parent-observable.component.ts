@@ -1,17 +1,17 @@
-import {AsyncPipe} from '@angular/common';
-import {Component,DestroyRef,inject} from '@angular/core';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Observable,distinctUntilChanged,switchMap} from 'rxjs';
-import {APIService} from '../api.service';
-import {ChildObservableComponent} from "./child-observable.component";
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Observable, distinctUntilChanged, switchMap } from 'rxjs';
+import { APIService } from '../api.service';
+import { ChildObservableComponent } from "./child-observable.component";
 
 type ApiTerm = 'users' | 'products' | 'orders';
 
 @Component({
-  selector: 'app-parent-observable',
-  standalone: true,
-  imports: [AsyncPipe, ChildObservableComponent],
-  template: `
+    selector: 'app-parent-observable',
+    standalone: true,
+    imports: [CommonModule, AsyncPipe, ChildObservableComponent],
+    template: `
     <app-child-observable
       (notifyParent)="getNotification($event)"  
     />
@@ -26,7 +26,7 @@ type ApiTerm = 'users' | 'products' | 'orders';
       <h2>Loading...</h2> 
     }
     
-  `,
+  `
 })
 export class ParentObservableComponent {
   // Initialise to an empty observable

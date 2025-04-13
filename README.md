@@ -1,4 +1,4 @@
-# Angular P <-> C Communication using Input PLAYGROUND
+# Angular (19+) Observables and Signal using @Input/@Output playground and Signal Input/Output
 
 ```js
 - /`child-contructor-input-onchanges`
@@ -9,9 +9,6 @@ passing P <-> C @Input/@Output with SoC
 
 - Child-observable: Passing Observable from P -> C + Reusable Generic Service
 ```
-
-TODO: 
-- Child-signal: input signal
 
 ---
 

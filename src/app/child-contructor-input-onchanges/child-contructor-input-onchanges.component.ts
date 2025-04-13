@@ -1,10 +1,11 @@
-import {Component,Input,OnChanges,OnInit,} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-child-contructor-input-onchanges',
-  standalone: true,
-  imports: [],
-  template: `<p>{{ inputValue }}</p>`
+    selector: 'app-child-contructor-input-onchanges',
+    standalone: true,
+    imports: [CommonModule],
+    template: `<p>{{ inputValue }}</p>`
 })
 export class ChildContructorInputOnchangesComponent implements OnInit, OnChanges {
   @Input() inputValue!: string;

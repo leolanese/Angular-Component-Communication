@@ -1,18 +1,19 @@
-import {Component} from '@angular/core';
-import {ChildComponent} from '../child/child.component';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ChildComponent } from '../child/child.component';
 
 @Component({
-  selector: 'app-parent',
-  standalone: true,
-  imports: [ChildComponent],
-  template: `
+    selector: 'app-parent',
+    standalone: true,
+    imports: [CommonModule, ChildComponent],
+    template: `
     <!-- all the Property binding [] / Event binding () are declared as @Input/@Ouput in the C -->
     <app-child 
       [toChildMessage]="toChildMessage" 
       (toParentMessage)="onParentMessage($event)"
       (toParentPackage)="onParentPackage($event)"
     />
-  `,
+  `
 })
 export class ParentComponent {
   toChildMessage = 'Message from Parent -> Child';

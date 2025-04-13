@@ -1,12 +1,13 @@
-import {Component,EventEmitter,Input,OnInit,Output} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-child',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'app-child',
+    standalone: true,
+    imports: [CommonModule],
+    template: `
      <button (click)="sendValues($event)"> Send Data </button>
-  `,
+  `
 })
 export class ChildComponent implements OnInit {
   // @Input = P -> C*

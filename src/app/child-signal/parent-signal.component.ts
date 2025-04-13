@@ -1,20 +1,20 @@
-import {CommonModule} from '@angular/common';
-import {Component,DestroyRef,inject,signal,WritableSignal} from '@angular/core';
-import {Observable} from 'rxjs';
-import {APIService} from '../api.service';
-import {ChildSignalComponent} from "./child-signal.component";
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, inject, signal, WritableSignal } from '@angular/core';
+import { Observable } from 'rxjs';
+import { APIService } from '../api.service';
+import { ChildSignalComponent } from "./child-signal.component";
 
 type ApiTerm = 'users' | 'products' | 'orders';
 
 @Component({
-  selector: 'app-parent-signal',
-  standalone: true,
-  imports: [CommonModule, ChildSignalComponent],
-  template: `
+    selector: 'app-parent-signal',
+    standalone: true,
+    imports: [CommonModule, ChildSignalComponent],
+    template: `
     <button (click)="fetchPosts()">Load Posts</button>
 
     <app-child-signal [postsSignal]="postsSignal"></app-child-signal>
-  `,
+  `
 })
 export class ParentSignalComponent {
   data$!: Observable<any[]> 
