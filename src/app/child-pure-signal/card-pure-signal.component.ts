@@ -7,13 +7,10 @@ import { ApiService } from '../api.signal.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <article class="card" (click)="userSelected.emit(user())"  (click)="onCardClick()">
+    <article class="card" 
+      (click)="userSelected.emit(user())" >
       <div class="card-content">
-        <h3>{{ user().name }}</h3>
-        <p class="username">{{ user().username }}</p>
-        <p class="email">{{ user().email }}</p>
-        <p class="address">{{ user().address.street }}, {{ user().address.city }}</p>
-        <p class="company">{{ user().company.name }}</p>
+        <p>{{ user().name }}</p>
       </div>
     </article>
   `,
@@ -39,7 +36,7 @@ export class UserCardComponent {
 
   private readonly serviceApi = inject(ApiService);
 
-  onCardClick(): void {
-    this.serviceApi.setSelectedUser(this.user());
-  }
+  // onCardClick(): void {
+  //   this.serviceApi.setSelectedUser(this.user());
+  // }
 }

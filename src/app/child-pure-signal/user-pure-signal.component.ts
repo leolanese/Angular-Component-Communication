@@ -38,6 +38,7 @@ export class UserComponent {
   items = this.serviceApi.items;
 
   onUserSelected(user: any): void {
+    alert(JSON.stringify(user));
     console.log('User selected in Parent Component:', user);
     console.log('isBrowser:', this.isBrowser());
     console.log('isServer:', this.isServer());
