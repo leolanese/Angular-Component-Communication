@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ParentContructorInputOnchangesComponent } from "./child-contructor-input-onchanges/parent-contructor-input-onchanges.component";
 import { ParentObservableComponent } from './child-observable/parent-observable.component';
-import { UserPureSignalComponent } from './child-pure-signal/user-pure-signal.component';
+import { ParentPureSignalComponent } from './child-pure-signal/parent-pure-signal.component';
 import { ChildSignalComponent } from "./child-signal/child-signal.component";
 import { ParentSignalComponent } from "./child-signal/parent-signal.component";
 import { ParentComponent } from "./child/parent.component";
@@ -13,7 +13,7 @@ import { ParentComponent } from "./child/parent.component";
     standalone: true,
     imports: [CommonModule, RouterOutlet, ParentObservableComponent, ParentComponent, 
       ParentContructorInputOnchangesComponent, ChildSignalComponent, ParentSignalComponent,
-      UserPureSignalComponent
+      ParentPureSignalComponent
     ],
     template: `
     <h1>{{ title }}</h1>
@@ -33,7 +33,7 @@ import { ParentComponent } from "./child/parent.component";
     <app-parent-signal />
     <hr>
     <h2>{{ title5 }}</h2>
-    <app-user-pure-signal />
+    <app-parent-pure-signal />
     
     <router-outlet />
   `,
