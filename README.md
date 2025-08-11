@@ -16,6 +16,20 @@ passing P <-> C @Input/@Output with SoC
 
 ---
 
+## Modern practices latest final signal-based API is implementing 🚀
+
+```js
+✅ @NgModule  → Standalone component
+✅ *ngFor, *ngIf  → Modern control flow: @if, @for
+✅ Parent emits updates through writableSignal() following the Modern `Signal-Based Component Architecture Pattern` (Service (Shared State) ←→ Parent (Local State) ←→ Child (Pure Input))
+✅ ngOnInit() + subscribe() + contructor based inject → Use reactive Signals + computed() 
+✅ contruct-based DI injection → inject(HttpClient) 
+✅ Better Ts notation → Protected + readonly template properties for protection and mutability control
+✅ Two-Way Binding (Old Way) → signal-input-pattern 
+```
+
+---
+
 ## NOTES:
 > When passing values from a P -> C component using the `@Input`, `these values are not available in the constructor` = Avoids running Angular-specific logic or accessing @Input properties, as they are not yet set.
 
@@ -28,93 +42,9 @@ passing P <-> C @Input/@Output with SoC
 - `Not safe access @Input values`
 
 ### ngOnInit()
-
 - called after the constructor, after the first ngOnChanges()
 - `Safe for access @Input` values
 - Runs after the constructor and after Angular sets up the component's bindings.
-
----
-
-## @for instead *ngFor()
-
-> The key difference is that `@for` loops over the array value directly, while `*ngFor` gives you the array element value.
-
-Feature: Syntax
-- `ngFor`: `*ngFor="let item of items"`
-- `@for`: `@for="let i from X to Y"`
-
-
-```js
-// instead of
-<ul>
-  <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li>
-</ul>
-
-// better do
-<ul>
-  @for (let suggestion of suggestions) {
-    <li>{{ suggestion }}</li>
-  }
-</ul>
-```
-
-## @for with | async pipe
-
-```js
-// instead
-<div *ngIf="users$ | async as users; else loading">
-  <app-dummy 
-     *ngFor="let user of users" 
-     [user]="user" 
-     (fetchDataEvent)="fetchData()"
-  />
-</div>
-<ng-template #loading><h2>Loading...</h2></ng-template>  
-
-// better do
-@for(user of users$ | async; track user){
-    <app-dummy 
-        [user]="user" 
-        (fetchDataEvent)="fetchData()"
-    />
-} @empty {
-    <h2>Loading...</h2> 
-}
-```
-
-## @for with $index
-
-```js
-@Component({
-    template: `
-        @for(fruit of fruits; track fruit; let index = $index) {
-            <div>{{ fruit }} {{ index }}</div>
-        }
-
-    `,
-})
-export class FruitComponent {
-    fruits = ['apple', 'lemon'];
-}
-```
-
-## @for with $first and $last
-
-```js
-@Component({
-    template: `
-        @for(fruit of fruits; track fruit; let first = $first, last = $last) {
-            <div>First: {{ first }}: Last {{ last }}</div>
-        }
-    `,
-})
-export class FruitComponent {
-    fruits = ['apple', 'lemon'];
-}
-
-// <div>First: true: Last false</div>
-// <div>First: false: Last true</div>
-```
 
 ---
 

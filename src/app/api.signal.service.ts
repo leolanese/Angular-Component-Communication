@@ -6,7 +6,7 @@ import { User } from './types/user.types';
 export class ApiService {
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
-  // Signal to store the selected user
+  // Service manages shared state across components
   private readonly selectedUserSignal = signal<User | null>(null);
 
   // HTTP resource for fetching users
