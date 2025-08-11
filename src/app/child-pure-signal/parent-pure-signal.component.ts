@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { ApiService } from '../api.signal.service';
 import { User } from '../types/user.types';
 import { ChildCardPureSignalComponent } from './child-pure-signal.component';
@@ -33,7 +33,7 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
           <div class="selection-info">
             <h3>Selected User: {{ selectedUser()?.name }}</h3>
             <p>Email: {{ selectedUser()?.email }}</p>
-            <p>Company: {{ selectedUser()?.company.name }}</p>
+            <p>Company: {{ selectedUser()?.company?.name }}</p>
           </div>
         }
       } @else {
