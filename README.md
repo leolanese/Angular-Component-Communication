@@ -4,16 +4,6 @@
 
 ![Demo](./src/app/assets/demo.png)
 
-```js
-- /`child-contructor-input-onchanges`
-Accessing passed values from contructor() (not safe), @Input() and ngOnChanges() with SoC
-
-- /`child` 
-passing P <-> C @Input/@Output with SoC
-
-- Child-observable: Passing Observable from P -> C + Reusable Generic Service
-```
-
 ---
 
 ## Modern practices latest final signal-based API is implementing 🚀
