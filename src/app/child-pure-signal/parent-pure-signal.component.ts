@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal, computed } from '@angular/core';
 import { ApiService } from '../api.signal.service';
 import { User } from '../types/user.types';
 import { ChildCardPureSignalComponent } from './child-pure-signal.component';
@@ -9,28 +9,33 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
   imports: [ChildCardPureSignalComponent, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if (apiService.isLoading()) {
+    @if (isLoading()) {
       <div class="loading-state">
         <p>{{ loadingMessage() }}</p>
       </div>
-    } @else if (apiService.isError()) {
+    } @else if (isError()) {
       <div class="error-state">
         <p>{{ errorMessage() }}</p>
+        <p class="error-details">{{ errorDetails() | json }}</p>
       </div>
     } @else {
-      @if (apiService.items().length) {
+      @if (users().length) {
         <section class="card-container">
-          @for (parentItem of apiService.items(); track parentItem.id) {
-            
-            <!-- Parent → Child: P passes user data to each card: [user]="user" -->
-            <!-- Child → Parent: C emits user selection events: (userSelected)="handleUserSelection($event)" -->
+          @for (user of users(); track user.id) {
             <app-child-card-pure-signal
-              [childItem]="parentItem" 
+              [childItem]="user" 
               (userSelected)="handleUserSelection($event)" 
-            >{{ parentItem | json }}</app-child-card-pure-signal>
-
+            />
           }
         </section>
+        
+        @if (selectedUser()) {
+          <div class="selection-info">
+            <h3>Selected User: {{ selectedUser()?.name }}</h3>
+            <p>Email: {{ selectedUser()?.email }}</p>
+            <p>Company: {{ selectedUser()?.company.name }}</p>
+          </div>
+        }
       } @else {
         <div class="empty-state">
           <p>{{ emptyMessage() }}</p>
@@ -58,20 +63,44 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
       gap: 1rem;
       padding: 1rem;
     }
+
+    .selection-info {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #007bff;
+    }
   `
 })
 export class ParentPureSignalComponent {
-  // Parent Component
+  // Modern Parent Component with Writable Signals
 
-  readonly apiService = inject(ApiService);
+  private readonly apiService = inject(ApiService);
+   
+  // Writable signals for reactive state management
+  private readonly selectedUserSignal = signal<User | null>(null);
+  
+  // Computed signals for derived state
+  readonly isLoading = computed(() => this.apiService.isLoading());
+  readonly isError = computed(() => this.apiService.isError());
+  readonly users = computed(() => this.apiService.items());
+  readonly selectedUser = this.selectedUserSignal.asReadonly();
+  readonly errorDetails = computed(() => this.apiService.isError());
    
   // Optional inputs with default values
   readonly loadingMessage = input('Loading users...');
   readonly errorMessage = input('An error occurred while loading users');
   readonly emptyMessage = input('No users found');
    
-  protected handleUserSelection(userItem: User): void {
-    console.log('User selected in Parent Component:', userItem);
+  protected handleUserSelection(user: User): void {
+    // Update local state through writable signal
+    this.selectedUserSignal.set(user);
+    
+    // Also update shared service state
+    this.apiService.setSelectedUser(user);
+    
+    console.log('User selected in Parent Component:', user);
+    console.log('Parent state updated via writable signal');
   }
-
 }

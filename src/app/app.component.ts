@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { ParentContructorInputOnchangesComponent } from "./child-contructor-input-onchanges/parent-contructor-input-onchanges.component";
 import { ParentObservableComponent } from './child-observable/parent-observable.component';
 import { ParentPureSignalComponent } from './child-pure-signal/parent-pure-signal.component';
-import { ChildSignalComponent } from "./child-signal/child-signal.component";
 import { ParentSignalComponent } from "./child-signal/parent-signal.component";
 import { ParentComponent } from "./child/parent.component";
 
@@ -12,7 +11,7 @@ import { ParentComponent } from "./child/parent.component";
     selector: 'app-root',
     standalone: true,
     imports: [CommonModule, RouterOutlet, ParentObservableComponent, ParentComponent, 
-      ParentContructorInputOnchangesComponent, ChildSignalComponent, ParentSignalComponent,
+      ParentContructorInputOnchangesComponent, ParentSignalComponent,
       ParentPureSignalComponent
     ],
     template: `

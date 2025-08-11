@@ -73,7 +73,7 @@ export class ChildCardPureSignalComponent {
   // Child Component
 
   // Input signal for user data
-  readonly childItem = input.required<User>(); 
+  readonly childItem = input<User>(); 
   // Output signal for user selection
   readonly userSelected = output<User>();
 
