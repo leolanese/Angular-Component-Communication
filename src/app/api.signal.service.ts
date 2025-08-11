@@ -1,36 +1,38 @@
 import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
+import { User } from './types/user.types';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ApiService {
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
   // Signal to store the selected user
-  private selectedUserSignal = signal<any>(null);
+  private readonly selectedUserSignal = signal<User | null>(null);
 
-  // postId = signal(1);
-  // post = httpResource<any>(() => `${this.baseUrl}/posts/${this.postId()}`)
-  // user = httpResource<any>(() => `${this.baseUrl}/users/${this.post.value()?.userId}`)
-  // comments = httpResource<any>(() => `${this.baseUrl}/comments?postId=${this.post.value()?.userId}`)
-
-  // Using httpResource() with Parameters
-  private itemsResource = httpResource<any>(() => ({
+  // HTTP resource for fetching users
+  private readonly usersResource = httpResource<User[]>(() => ({
     url: `${this.baseUrl}/users`,
     method: 'GET',
     headers: {
       accept: 'application/json'
     },
-    defaultValue: { item: 'empty'}
+    defaultValue: []
   }));
 
-  // Computed signals for the template
-  isLoading = this.itemsResource.isLoading;
-  items = computed(() => this.itemsResource.value() ?? []);
-  isError = computed(() => this.itemsResource.error() as HttpErrorResponse);
+  // Computed signals for reactive state management
+  readonly isLoading = this.usersResource.isLoading;
+  readonly items = computed(() => this.usersResource.value() ?? []);
+  readonly isError = computed(() => this.usersResource.error() as HttpErrorResponse | null);
+  readonly selectedUser = this.selectedUserSignal.asReadonly();
 
-    // Method to update the selected user
-  setSelectedUser(user: any): void {
+  // Method to update the selected user
+  setSelectedUser(user: User): void {
     this.selectedUserSignal.set(user);
     console.log('User selected in service:', user);
+  }
+
+  // Method to clear selected user
+  clearSelectedUser(): void {
+    this.selectedUserSignal.set(null);
   }
 } 

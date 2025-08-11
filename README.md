@@ -1,4 +1,4 @@
-# Angular (19+) Observables and Signal using @Input/@Output playground and Signal Input/Output 🔊
+# Angular (19+) Observables Vs Signal using @Input/@Output playground and Signal Input/Output 🔊
 
 ## Demo
 
