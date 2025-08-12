@@ -13,17 +13,16 @@ interface User {
     standalone: true,
     imports: [CommonModule],
     template: `
-    <div>
-      <h3>{{ user().name }} : {{ user().id }}</h3>
-      <p class="username">Username: {{ user().username }}</p>
-      <p class="email">Email: {{ user().email }}</p>
-      <button (click)="fetchData()">Fetch Data</button>
-    </div>
-
-    <button 
+        <button 
         (click)="sendNotification()">
         Message to Parent
-    </button>`
+        </button>
+        <div>
+          <h3>{{ user().name }} : {{ user().id }}</h3>
+          <p class="username">Username: {{ user().username }}</p>
+          <p class="email">Email: {{ user().email }}</p>
+        </div>
+    `
 })
 export class ChildObservableComponent {
   @Output()  // Send to Parent
@@ -32,7 +31,6 @@ export class ChildObservableComponent {
   @Output()  // Send to Parent
   fetchDataEvent = new EventEmitter<void>(); 
 
-  // Signal to store user data
   user = signal<User>({
     id: 0,
     name: '',

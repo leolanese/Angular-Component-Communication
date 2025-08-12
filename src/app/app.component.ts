@@ -5,7 +5,7 @@ import { ParentContructorInputOnchangesComponent } from "./child-contructor-inpu
 import { ParentObservableComponent } from './child-observable/parent-observable.component';
 import { ParentPureSignalComponent } from './child-pure-signal/parent-pure-signal.component';
 import { ParentSignalComponent } from "./child-signal/parent-signal.component";
-import { ParentComponent } from "./child-simple/parent.component";
+import { ParentComponent } from "./child-simple/parent-simple.component";
 
 @Component({
     selector: 'app-root',
@@ -40,9 +40,9 @@ import { ParentComponent } from "./child-simple/parent.component";
 export class AppComponent {
   title: string = 'Observables Vs Signal using @Input/@Output playground and Signal Input/Output';
 
-  title1 = '1. Passing and accessing data: constructor, ngOnChanges, ngOnInit (safe)';
-  title2 = '2. Message P->C communication with SoC';
-  title3 = '3. Observable P->C communication from API service with SoC';
-  title4 = '4. Hybrid Input signal P->C communication from API with SoC';
-  title5 = '5. Pure signal P->C input signal for communication from API with SoC';
+  title1 = '1. Passing and accessing data: constructor, ngOnInit / ngOnChanges (safe) ';
+  title2 = '2. Message P->C communication with SoC (Simple)';
+  title3 = '3. Observable & signal based P->C communication from API service, TS generic type, distinctUntilChanged, takeUntilDestroyed with SoC (Observable)';
+  title4 = '4. Hybrid Input & Output signal P->C communication from API with SoC (Signal)';
+  title5 = '5. Pure signal based P->C input signal for communication from API with SoC (Signal)';
 }

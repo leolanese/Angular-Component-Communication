@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ChildComponent } from './child.component';
+import { ChildComponent } from './child-simple.component';
 
 @Component({
     selector: 'app-parent-simple',
@@ -8,7 +8,7 @@ import { ChildComponent } from './child.component';
     imports: [CommonModule, ChildComponent],
     template: `
       <p>{{ title }}</p>
-      <app-child 
+      <app-child-simple 
         [toChildMessage]="toChildMessage" 
         (toParentMessage)="onParentMessage($event)"
         (toParentPackage)="onParentPackage($event)"
@@ -16,7 +16,7 @@ import { ChildComponent } from './child.component';
   `
 })
 export class ParentComponent {
-  title = '/child';
+  title = '/child-simple';
   toChildMessage = 'Message from Parent -> Child';
 
   onParentMessage(event: unknown) {

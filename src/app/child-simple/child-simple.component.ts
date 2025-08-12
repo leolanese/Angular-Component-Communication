@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'app-child',
+    selector: 'app-child-simple',
     standalone: true,
     imports: [CommonModule],
     template: `

@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, distinctUntilChanged, switchMap } from 'rxjs';
+import { Observable, distinctUntilChanged } from 'rxjs';
 import { APIService } from '../api.service';
 import { ChildObservableComponent } from "./child-observable.component";
 
@@ -12,23 +12,24 @@ type ApiTerm = 'users' | 'products' | 'orders';
     standalone: true,
     imports: [CommonModule, AsyncPipe, ChildObservableComponent],
     template: `
-    <app-child-observable
-      (notifyParent)="getNotification($event)"  
-    />
+      <p>{{ title }}</p>
+      <app-child-observable
+        (notifyParent)="getNotification($event)"  
+      />
 
-    @for(user of data$ | async; track user){
-      <div>
-        <h3>id: {{ user.id }}</h3>
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>  
-      </div>
-    } @empty {
-      <h2>Loading...</h2> 
-    }
-    
+      @for(user of data$ | async; track user){
+        <div>
+          <h3>id: {{ user.id }}</h3>
+          <p>Username: {{ user.username }}</p>
+          <p>Email: {{ user.email }}</p>  
+        </div>
+      } @empty {
+        <h2>Loading...</h2> 
+      }
   `
 })
 export class ParentObservableComponent {
+  title = '/child-observable';
   // Initialise to an empty observable
   data$!: Observable<any[]> 
 
@@ -41,7 +42,7 @@ export class ParentObservableComponent {
   ngOnInit(): void {
     this.fetchData<string>('users');
     // this.fetchData<string>('products');
-    // this.fetchData<string>('orders');
+    // this.fetchData<string>('posts');
   }
 
   getNotification(event: string) {
@@ -53,10 +54,8 @@ export class ParentObservableComponent {
     const url = `${this.apiService.apiRootUrl}${term}`;
 
     this.data$ = this.apiService.get<T[]>(url).pipe(
-      distinctUntilChanged(), // Only trigger if the value has changed
-      switchMap(() => this.apiService.get<T[]>(url).pipe(
-        takeUntilDestroyed(this.destroyRef), // Efficient cleanup for subscriptions
-      ))
+      distinctUntilChanged(), // ONLY trigger on value change
+      takeUntilDestroyed(this.destroyRef), 
     );
   }
 
