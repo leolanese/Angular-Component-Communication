@@ -6,8 +6,14 @@ import { ChildContructorInputOnchangesComponent } from "./child-contructor-input
     selector: 'app-parent-contructor-input-onchanges',
     standalone: true,
     imports: [CommonModule, ChildContructorInputOnchangesComponent],
-    template: `<app-child-contructor-input-onchanges [inputValue]="parentValue" />`
+    template: `
+      <p>{{ title }}</p>
+      <app-child-contructor-input-onchanges 
+        [inputValue]="parentValue" 
+      />
+    `
 })
 export class ParentContructorInputOnchangesComponent {
-  parentValue = 'Hello from Parent';
+  title = '/child-contructor-input-onchanges';
+  parentValue = 'Message from Parent';
 }

@@ -11,14 +11,14 @@ export class ChildContructorInputOnchangesComponent implements OnInit, OnChanges
   @Input() inputValue!: string;
 
   constructor() {
-    console.log('Constructor ChildContructorInputOnchangesComponent :', this.inputValue); // Undefined
+    console.log('Constructor NOT safe:', this.inputValue); // Undefined
   }
 
   ngOnChanges(): void {
-    console.log('ngOnChanges ChildContructorInputOnchangesComponent:', this.inputValue); // Logs updated `@Input` value
+    console.log('ngOnChanges safe:', this.inputValue); // updated `@Input` value
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit ChildContructorInputOnchangesComponent:', this.inputValue); // Logs final `@Input` value
+    console.log('ngOnInit safe:', this.inputValue); // final `@Input` value
   }
 }

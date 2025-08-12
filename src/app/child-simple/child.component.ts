@@ -6,13 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     standalone: true,
     imports: [CommonModule],
     template: `
-     <button (click)="sendValues($event)"> Send Data </button>
+      <button 
+        (click)="sendValues($event)"> Send Data </button>
   `
 })
 export class ChildComponent implements OnInit {
-  // @Input = P -> C*
-  // @Output = C* -> P
-  // *TIP: think always from the C POV
   @Input()
   toChildMessage: string|undefined;
 

@@ -5,7 +5,7 @@ import { ParentContructorInputOnchangesComponent } from "./child-contructor-inpu
 import { ParentObservableComponent } from './child-observable/parent-observable.component';
 import { ParentPureSignalComponent } from './child-pure-signal/parent-pure-signal.component';
 import { ParentSignalComponent } from "./child-signal/parent-signal.component";
-import { ParentComponent } from "./child/parent.component";
+import { ParentComponent } from "./child-simple/parent.component";
 
 @Component({
     selector: 'app-root',
@@ -21,8 +21,7 @@ import { ParentComponent } from "./child/parent.component";
     <app-parent-contructor-input-onchanges />
     <hr>
     <h2>{{ title2 }}</h2>
-    <!-- @input/@output message communication -->
-    <app-parent />
+    <app-parent-simple />
     <hr>
     <h2>{{ title3 }}</h2>
     <!-- observable @input/@output Observable communication -->
