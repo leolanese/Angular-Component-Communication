@@ -11,12 +11,14 @@ type ApiTerm = 'users' | 'products' | 'orders';
     standalone: true,
     imports: [CommonModule, ChildSignalComponent],
     template: `
-    <button (click)="fetchPosts()">Load Posts</button>
+      <p>{{ title }}</p>
 
-    <app-child-signal [postsSignal]="postsSignal"></app-child-signal>
+      <button (click)="fetchPosts()">Load Posts</button>
+      <app-child-signal [postsSignal]="postsSignal"></app-child-signal>
   `
 })
 export class ParentSignalComponent {
+  title = '/child-signal';
   data$!: Observable<any[]> 
   parentMessage: string = 'Hello from Parent!';
 

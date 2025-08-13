@@ -17,19 +17,23 @@ import { ParentComponent } from "./child-simple/parent-simple.component";
     template: `
     <h1>{{ title }}</h1>
     <hr>
+
     <h2>{{ title1 }}</h2>
     <app-parent-contructor-input-onchanges />
     <hr>
+
     <h2>{{ title2 }}</h2>
     <app-parent-simple />
     <hr>
+
     <h2>{{ title3 }}</h2>
-    <!-- observable @input/@output Observable communication -->
     <app-parent-observable /> 
     <hr>
+
     <h2>{{ title4 }}</h2>  
     <app-parent-signal />
     <hr>
+
     <h2>{{ title5 }}</h2>
     <app-parent-pure-signal />
     
@@ -38,11 +42,11 @@ import { ParentComponent } from "./child-simple/parent-simple.component";
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title: string = 'Observables Vs Signal using @Input/@Output playground and Signal Input/Output';
+  title: string = 'Communicate between Prent and Child components: Observables Vs Signal';
 
-  title1 = '1. Passing and accessing data: constructor, ngOnInit / ngOnChanges (safe) ';
-  title2 = '2. Message P->C communication with SoC (Simple)';
-  title3 = '3. Observable & signal based P->C communication from API service, TS generic type, distinctUntilChanged, takeUntilDestroyed with SoC (Observable)';
-  title4 = '4. Hybrid Input & Output signal P->C communication from API with SoC (Signal)';
-  title5 = '5. Pure signal based P->C input signal for communication from API with SoC (Signal)';
+  title1 = '🔴 1. Observable-based Passing and accessing data: constructor, ngOnInit / ngOnChanges (safe) ';
+  title2 = '🔴 2. Observable-based Message P->C communication with SoC (Simple)';
+  title3 = '🟡 3. Hybrid Observable & signal based P->C communication from API service, TS generic type, distinctUntilChanged, takeUntilDestroyed with SoC (Observable)';
+  title4 = '🟡 4. Hybrid Observable & signal based Input & Output signal P->C communication from API with SoC';
+  title5 = '🟢 5. Pure Signal based P->C input signal for communication from API with SoC';
 }

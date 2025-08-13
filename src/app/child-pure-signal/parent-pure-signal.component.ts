@@ -9,6 +9,8 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
   imports: [ChildCardPureSignalComponent, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <p>{{ title }}</p>
+    
     @if (isLoading()) {
       <div class="loading-state">
         <p>{{ loadingMessage() }}</p>
@@ -22,13 +24,14 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
       @if (users().length) {
         <section class="card-container">
           @for (user of users(); track user.id) {
+
             <app-child-card-pure-signal
               [childItem]="user" 
               (userSelected)="handleUserSelection($event)" 
             />
+            
           }
         </section>
-        
         @if (selectedUser()) {
           <div class="selection-info">
             <h3>Selected User: {{ selectedUser()?.name }}</h3>
@@ -74,6 +77,7 @@ import { ChildCardPureSignalComponent } from './child-pure-signal.component';
   `
 })
 export class ParentPureSignalComponent {
+  title = '/child-pure-signal';
   // Modern Parent Component with Writable Signals
 
   private readonly apiService = inject(ApiService);

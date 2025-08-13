@@ -2,7 +2,7 @@
 
 ## Demo
 
-![Demo](./src/app/assets/demo.png)
+![Demo](./src/app/assets/demo-updated.png)
 
 ---
 

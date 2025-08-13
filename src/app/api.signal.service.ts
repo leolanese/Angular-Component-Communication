@@ -4,6 +4,7 @@ import { User } from './types/user.types';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+  // 3.1 Shared Service (Global State Instance) - Reactive State:
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
   // Service manages shared state across components
